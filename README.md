@@ -38,34 +38,34 @@ Automatic Alzheimer's disease identification from brain MRI images: a study util
 # **2. The Developed Approach**
 The aim of this study is to use CNN in the diagnosis of Alzheimer's and to get a good result. Colorless 2D MR images, color 2D MR images and 3D MR images are used in such studies. Generally used data are 3D MR images. 2D colorless MRI images, on the other hand, have very low efficiency. However, using 3D MRI images takes longer and costs more. We were planning to use color 2D MR images in this study, but we had to use colorless versions because we could not reach colored 2D datasets. However, we believe that 2D data will be more useful and will provide at least as much efficiency as 3D MR images. So in parallel with this belief we will use ConvNet. However, we will usually use the Pooling Layer to reduce the number of calculations and get faster results. There are many layers that can be used when working with CNN, such as convolutional layers and dropout layers, depending on the purpose. According to the work done, we will also see the use of Flatten and Dense. In these experiments we will do, we will compare the Accuracy, F1-Score, Recall and Precision values. We will use a dataset from the ADNI database as the dataset. There are 6400 MR images in this dataset and they are in 4 different classes. These classes are readily available and also Data Mining methods will not be used to classify them. All MRI images are 128x128 pixels, with classes Mild Dementia (896 MRI images), Moderate Dementia (64 MRI images), No Dementia (3200 MRI images), and Very Mild Dementia (2240 MRI images). We will test these studies on the Colab platform. Details of the studies and images from Colab are available in the next parts of the study.
 
-<p align ="center"><image src="ADNI_AlzheimersMRIbrainDataset.png" width="100%"></p>
+<p align ="center"><image src="Images/ADNI_AlzheimersMRIbrainDataset.png" width="100%"></p>
 
 *Figure 1 - ADNI Alzheimer's MRI Brain Images Dataset*
 
 # **3. EXPERİMENTAL WORKS**
 In this study, we will explain the experiments we have done and the results of the changes under this title. We used Colab Platform by transferring 6400 MRI images to google drive account and pulling these data from Drive. Actually, we wanted to do these operations locally from the computer instead of Colab, but with the latest update of the TensorFlow library, we preferred to use the Colab platform because the use of the graphics card on the computer became quite complicated. We used many libraries. In all our experiments, we exposed our training data to the network 20 times.
 
-<p align="left"><img src="MRIimages.png"></p>
+<p align="left"><img src="Images/MRIimages.png"></p>
 
 *Figure 2 - Samples of 2D Colourless MRI Images from ADNI Dataset*
 
 ## **3.1 Experiment 1**
 In our first experiment, we used the Conv2D layer. Then we used the Max Pooling layer. We repeated these two applications 3 times in total. During this iteration, we used 64 convolution nodes in the first Conv2D layer and 32 in the second and third. Then we added the Flatten's layer, thus increasing the speed of the data going to the input of the last layer. Then we added the Dense layer, one with 100 nodes and the other with 50 nodes. We completed our model by applying SoftMax with 4 nodes in the last Dense layer. We see that over-learning occurs when we train our model when we come to 14th epoch. And in the other epochs which are after 14th, we see the loss getting too high. Still, we achieved an accuracy rate of 97.38% in our first experiment.
 
-![](Experiment1.png)
+![](Images/Experiment1.png)
 
 *Figure 3 - Results of the First Experiment*
 
 ## **3.2 Experiment 2**
 In our second experiment, we added two Dropout layers, the first 0.20 and the second 0.25, after our second and third Conv2D-Max Pooling pair to avoid over-learning. We did not encounter any excessive learning and data loss. In this study, we obtained the accuracy value as 98.19%.
 
-![](Experiment2.png)
+![](Images/Experiment2.png)
 
 *Figure 4 - Results of the Second Experiment*
 ## **3.3 Experiment 3**
 In our last experiment, we changed the number of convolution nodes. We changed the values from 64, 32, 32 to 16, 32, 64, respectively. We also changed the first Dense layer node numbers from 100, 50 to 128, 64, respectively. After the 17th Epoch, we detected a negative deviation in our accuracy value and achieved an accuracy rate of 97.19%.
 
-![](Experiment3.png)
+![](Images/Experiment3.png)
 
 *Figure 5 - Results of the Third Experiment*
 
